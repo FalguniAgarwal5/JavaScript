@@ -1,0 +1,40 @@
+1. function isBoolean(value) {
+  return typeof value === "boolean";
+}
+
+2.  function isError(value) {
+  return value instanceof Error;
+}
+
+
+3. function isNaNValue(value) {
+  return typeof value === "number" && isNaN(value);
+}
+
+4. function isNull(value) {
+  return value === null;
+}
+
+5. function isNumber(value) {
+  return typeof value === "number" && !isNaN(value);
+}
+
+6. function isObject(value) {
+  return value !== null && typeof value === "object";
+}
+
+7. function isPureJSONObject(value) {
+  return Object.prototype.toString.call(value) === '[object Object]';
+}
+
+8. function isRegExp(value) {
+  return value instanceof RegExp;
+}
+
+9. function isChar(value) {
+  return typeof value === "string" && value.length === 1;
+}
+
+10. function isSameType(val1, val2) {
+  return typeof val1 === typeof val2;
+}

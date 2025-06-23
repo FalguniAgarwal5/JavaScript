@@ -1,0 +1,582 @@
+1.  function is_array(input) {
+  return Array.isArray(input);
+}
+
+// Test Data
+console.log(is_array('w3resource'));  // false
+console.log(is_array([1, 2, 4, 0]));  // true
+
+2. function array_Clone(arr) {
+  return arr.slice(0);
+}
+
+// Test Data
+console.log(array_Clone([1, 2, 4, 0]));       
+console.log(array_Clone([1, 2, [4, 0]]));     
+
+3. function first(array, n) {
+  if (array == null) return [];        // If array is null/undefined
+  if (n == null) return array[0];      // If n is not provided, return first element
+  if (n < 0) return [];                // If n is negative, return empty array
+  return array.slice(0, n);            // Return first n elements
+}
+
+// Test Data
+console.log(first([7, 9, 0, -2]));         
+console.log(first([], 3));                
+console.log(first([7, 9, 0, -2], 3));      
+console.log(first([7, 9, 0, -2], 6));      
+console.log(first([7, 9, 0, -2], -3));     
+
+4.  function last(array, n) {
+  if (array == null) return [];
+  if (n == null) return array[array.length - 1];
+  if (n < 0) return [];
+  return array.slice(-n);
+}
+
+// Test Data
+console.log(last([7, 9, 0, -2]));        
+console.log(last([7, 9, 0, -2], 3));     
+console.log(last([7, 9, 0, -2], 6));      
+
+5.  var myColor = ["Red", "Green", "White", "Black"];
+
+// Default join using comma
+console.log(myColor.join());            
+                            
+// Explicitly join using comma
+console.log(myColor.join(','));         
+
+// Join using plus sign
+console.log(myColor.join('+'));         
+
+
+6. function insertDashesBetweenEvens(num) {
+  // Convert the number to a string
+  let numStr = num.toString();
+  let result = '';
+
+  for (let i = 0; i < numStr.length; i++) {
+    result += numStr[i];
+
+    // Check if current and next digits are even numbers
+    if (
+      i < numStr.length - 1 &&
+      parseInt(numStr[i]) % 2 === 0 &&
+      parseInt(numStr[i + 1]) % 2 === 0
+    ) {
+      result += '-';
+    }
+  }
+
+  return result;
+}
+
+
+console.log(insertDashesBetweenEvens(025468)); 
+
+7.  var arr1 = [3, 8, 7, 6, 5, -4, 3, 2, 1];
+
+arr1.sort(function(a, b) {
+  return a - b;
+});
+
+console.log(arr1);
+
+8.  var arr1 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+
+function mostFrequentItem(arr) {
+  let freq = {};
+  let maxCount = 0;
+  let mostFrequent;
+
+  for (let i = 0; i < arr.length; i++) {
+    let item = arr[i];
+    freq[item] = (freq[item] || 0) + 1;
+
+    if (freq[item] > maxCount) {
+      maxCount = freq[item];
+      mostFrequent = item;
+    }
+  }
+
+  console.log(mostFrequent + " ( " + maxCount + " times )");
+}
+
+mostFrequentItem(arr1);
+
+9.  function swapCase(str) {
+  let result = '';
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+
+    if (char === char.toUpperCase()) {
+      result += char.toLowerCase();
+    } else {
+      result += char.toUpperCase();
+    }
+  }
+
+  return result;
+}
+
+// Test
+console.log(swapCase('The Quick Brown Fox'));
+
+
+10.  var a = [
+  [1, 2, 1, 24],
+  [8, 11, 9, 4],
+  [7, 0, 7, 27],
+  [7, 4, 28, 14],
+  [3, 10, 26, 7]
+];
+
+for (var i = 0; i < a.length; i++) {
+  console.log("row " + i);
+  for (var j = 0; j < a[i].length; j++) {
+    console.log(" " + a[i][j]);
+  }
+}
+
+
+11.  function sumOfSquares(arr) {
+  let sum = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i] * arr[i];
+  }
+
+  return sum;
+}
+
+// Test
+console.log(sumOfSquares([1, 2, 3, 4]));  
+
+
+12. function sumAndProduct(arr) {
+  let sum = 0;
+  let product = 1;
+
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    product *= arr[i];
+  }
+
+  console.log("Sum = " + sum);
+  console.log("Product = " + product);
+}
+
+// Test
+sumAndProduct([1, 2, 3, 4]);
+ 
+
+13.
+
+
+14. function removeDuplicatesIgnoreCase(arr) {
+  let unique = [];
+  let lowerCaseSet = new Set();
+
+  for (let i = 0; i < arr.length; i++) {
+    let lower = arr[i].toLowerCase();
+    if (!lowerCaseSet.has(lower)) {
+      lowerCaseSet.add(lower);
+      unique.push(arr[i]);
+    }
+  }
+
+  return unique;
+}
+
+// Test
+console.log(removeDuplicatesIgnoreCase(["Apple", "Banana", "apple", "orange", "BANANA"]));
+
+
+15.  var color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
+var o = ["th", "st", "nd", "rd"];
+
+for (var i = 0; i < color.length; i++) {
+  var suffix = o[(i + 1) % 10] || o[0]; // Choose proper ordinal
+  if ((i + 1) === 1) suffix = "st";
+  else if ((i + 1) === 2) suffix = "nd";
+  else if ((i + 1) === 3) suffix = "rd";
+  else suffix = "th";
+
+  console.log((i + 1) + suffix + " choice is " + color[i].trim() + ".");
+}
+
+16.  function findLeapYears(start, end) {
+  let leapYears = [];
+  for (let year = start; year <= end; year++) {
+    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+      leapYears.push(year);
+    }
+  }
+  return leapYears;
+}
+
+// Test
+console.log(findLeapYears(2000, 2025));
+
+
+17. function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    // Pick a random index from 0 to i
+    const j = Math.floor(Math.random() * (i + 1));
+    
+    // Swap arr[i] and arr[j]
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// Example usage:
+const originalArray = [1, 2, 3, 4, 5, 6];
+const shuffledArray = shuffleArray([...originalArray]); // Use spread to keep original intact
+
+console.log("Original Array:", originalArray);
+console.log("Shuffled Array:", shuffledArray);
+
+
+18.  function binary_Search(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] === target) {
+      return mid;
+    } else if (arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  return -1; // Not found
+}
+
+// Test
+var items = [1, 2, 3, 4, 5, 7, 8, 9];
+console.log(binary_Search(items, 1));
+console.log(binary_Search(items, 5));
+
+
+19.  var array1 = [1, 0, 2, 3, 4];
+var array2 = [3, 5, 6, 7, 8, 13];
+
+function sumArrays(arr1, arr2) {
+  let maxLength = Math.max(arr1.length, arr2.length);
+  let result = [];
+
+  for (let i = 0; i < maxLength; i++) {
+    let val1 = arr1[i] || 0;  // If undefined, use 0
+    let val2 = arr2[i] || 0;
+    result.push(val1 + val2);
+  }
+
+  return result;
+}
+
+// Test
+console.log(sumArrays(array1, array2)); 
+
+
+20.  function findDuplicates(arr) {
+  let seen = new Set();
+  let duplicates = new Set();
+
+  for (let i = 0; i < arr.length; i++) {
+    if (seen.has(arr[i])) {
+      duplicates.add(arr[i]);
+    } else {
+      seen.add(arr[i]);
+    }
+  }
+
+  return Array.from(duplicates);
+}
+
+// Test
+console.log(findDuplicates([1, 2, 3, 4, 2, 3, 5, 6, 1]));
+
+
+21. function flatten(arr, shallow = false) {
+  if (shallow) {
+    return arr.flat(); // Flatten one level
+  } else {
+    return arr.flat(Infinity); // Flatten all levels
+  }
+}
+
+// Test
+console.log(flatten([1, [2], [3, [[4]]], [5, 6]]));       
+
+
+console.log(flatten([1, [2], [3, [[4]]], [5, 6]], true)); 
+
+
+22.  function union(arr1, arr2) {
+  return Array.from(new Set([...arr1, ...arr2]));
+}
+
+// Test
+console.log(union([1, 2, 3], [100, 2, 1, 10]));
+
+
+23.  function flattenDeep(arr) {
+  return arr.flat(Infinity); // Flattens all levels
+}
+
+function difference(arr1, arr2) {
+  let flatArr1 = flattenDeep(arr1);
+  let flatArr2 = flattenDeep(arr2);
+
+  return flatArr1
+    .filter(x => !flatArr2.includes(x))
+    .concat(flatArr2.filter(x => !flatArr1.includes(x)))
+    .map(String); // Convert to string like expected
+}
+
+// Tests
+console.log(difference([1, 2, 3], [100, 2, 1, 10]));
+
+
+console.log(difference([1, 2, 3, 4, 5], [1, [2], [3, [[4]]], [5, 6]]));
+
+
+console.log(difference([1, 2, 3], [100, 2, 1, 10]));
+
+
+24.  function cleanArray(arr) {
+  return arr.filter(Boolean); // Keeps only truthy values
+}
+
+// Test
+console.log(cleanArray([NaN, 0, 15, false, -22, '', undefined, 47, null]));
+
+
+25. var library = [
+  { author: 'Bill Gates', title: 'The Road Ahead', libraryID: 1254 },
+  { author: 'Steve Jobs', title: 'Walter Isaacson', libraryID: 4264 },
+  { author: 'Suzanne Collins', title: 'Mockingjay: The Final Book of The Hunger Games', libraryID: 3245 }
+];
+
+function sortByTitle(arr) {
+  return arr.sort(function(a, b) {
+    let titleA = a.title.toLowerCase();
+    let titleB = b.title.toLowerCase();
+
+    if (titleA < titleB) return -1;
+    if (titleA > titleB) return 1;
+    return 0;
+  });
+}
+
+// Test
+console.log(sortByTitle(library));
+
+26.  function findPairWithSum(arr, target) {
+  let map = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let complement = target - arr[i];
+    if (map[complement] !== undefined) {
+      return [map[complement], i];
+    }
+    map[arr[i]] = i;
+  }
+
+  return null; // No pair found
+}
+
+// Test
+let numbers = [10, 20, 10, 40, 50, 60, 70];
+let target = 50;
+console.log(findPairWithSum(numbers, target)); 
+
+
+27.  function filterTruthyValues(arr) {
+  return arr.filter(Boolean);
+}
+
+// Test
+let sample = [NaN, 0, 15, false, -22, '', undefined, 47, null];
+console.log(filterTruthyValues(sample));
+
+
+28.  function longest_common_starting_substring(arr) {
+  if (arr.length === 0) return "";
+
+  let prefix = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    while (arr[i].indexOf(prefix) !== 0) {
+      prefix = prefix.substring(0, prefix.length - 1);
+      if (prefix === "") return "";
+    }
+  }
+
+  return prefix;
+}
+
+// Test
+console.log(longest_common_starting_substring(['go', 'google']));
+
+
+29.  function num_string_range(start, end, step) {
+  let result = [];
+  if (typeof start === 'string') {
+    let s = start.charCodeAt(0);
+    let e = end.charCodeAt(0);
+    for (let i = s; i <= e; i += step) {
+      result.push(String.fromCharCode(i));
+    }
+  } else {
+    for (let i = start; i <= end; i += step) {
+      result.push(i);
+    }
+  }
+  return result;
+}
+
+// Test
+console.log(num_string_range('a', 'z', 2));
+
+
+30.  function merge_array(arr1, arr2) {
+  return Array.from(new Set([...arr1, ...arr2]));
+}
+
+// Test
+var array1 = [1, 2, 3];
+var array2 = [2, 30, 1];
+console.log(merge_array(array1, array2));
+
+
+31. function remove_array_element(arr, value) {
+  return arr.filter(function(item) {
+    return item !== value;
+  });
+}
+
+// Test
+console.log(remove_array_element([2, 5, 9, 6], 5));
+
+
+32.  function containsElement(arr, value) {
+  return arr.includes(value);
+}
+
+// Test
+console.log(containsElement([2, 5, 9, 6], 5));
+
+
+33.  let arr = [1, 2, 3, 4];
+arr.length = 0;
+
+console.log(arr); 
+
+
+34.  function nthlargest(arr, n) {
+  let sorted = arr.sort((a, b) => b - a);
+  return sorted[n - 1];
+}
+
+// Test
+console.log(nthlargest([43, 56, 23, 89, 88, 90, 99, 652], 4));
+
+
+36.  function array_filled(size, value) {
+  return Array(size).fill(value);
+}
+
+// Test
+console.log(array_filled(6, 0));     
+console.log(array_filled(4, 11));    
+
+35. function getRandomItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// Test
+console.log(getRandomItem([10, 20, 30, 40, 50]));
+
+
+37. function array_filled(size, value) {
+  return Array(size).fill(value);
+}
+
+// Test
+console.log(array_filled(3, 'default value'));  
+console.log(array_filled(4, 'password'));       
+
+38. function move(arr, from, to) {
+  const newArr = [...arr]; // Clone the array
+  const element = newArr.splice(from, 1)[0]; // Remove element at `from`
+  newArr.splice(to, 0, element); // Insert at `to`
+  return newArr;
+}
+
+// Test
+console.log(move([10, 20, 30, 40, 50], 0, 2));   
+
+
+console.log(move([10, 20, 30, 40, 50], -1, -2)); 
+
+39.  function filter_array_values(arr) {
+  return arr.filter(item => item !== false && item !== null && item !== 0 && item !== '');
+}
+
+// Test
+console.log(filter_array_values([58, '', 'abcd', true, null, false, 0]));
+
+
+40.  function array_range(start, length) {
+  return Array.from({ length }, (_, i) => start + i);
+}
+
+// Test
+console.log(array_range(1, 4));    
+console.log(array_range(-6, 4));   
+
+
+41.  function rangeBetwee(start, end) {
+  let result = [];
+  for (let i = start; i <= end; i++) {
+    result.push(i);
+  }
+  return result;
+}
+
+// Test
+console.log(rangeBetwee(4, 7));     
+console.log(rangeBetwee(-4, 7));    
+
+
+42.  function flattenDeep(arr) {
+  return arr.flat(Infinity);
+}
+
+function difference(arr1, arr2) {
+  const flat1 = flattenDeep(arr1).map(String);
+  const flat2 = flattenDeep(arr2).map(String);
+
+  const all = new Set([...flat1, ...flat2]);
+  const common = new Set(flat1.filter(value => flat2.includes(value)));
+
+  return [...all].filter(value => !common.has(value));
+}
+
+// Test
+console.log(difference([1, 2, 3], [100, 2, 1, 10]));      
+
+
+console.log(difference([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]])); 
+
+
+console.log(difference([1, 2, 3], [100, 2, 1, 10]));      

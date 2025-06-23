@@ -1,0 +1,168 @@
+1. const today = new Date();
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+console.log("Today is : " + days[today.getDay()]);
+
+let hour = today.getHours();
+const minute = today.getMinutes();
+const second = today.getSeconds();
+const prepand = hour >= 12 ? "PM" : "AM";
+hour = hour % 12;
+hour = hour ? hour : 12;
+
+console.log(`Current time is : ${hour} ${prepand} : ${minute} : ${second}`);
+
+2. function printWindow() {
+  window.print();
+}
+printWindow(); // Call this function to print
+
+3. const today = new Date();
+const dd = String(today.getDate()).padStart(2, '0');
+const mm = String(today.getMonth() + 1).padStart(2, '0');
+const yyyy = today.getFullYear();
+
+console.log(`${mm}-${dd}-${yyyy}`);
+console.log(`${mm}/${dd}/${yyyy}`);
+console.log(`${dd}-${mm}-${yyyy}`);
+console.log(`${dd}/${mm}/${yyyy}`);
+
+4. const a = 5, b = 6, c = 7;
+const s = (a + b + c) / 2;
+const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+console.log("Area of triangle is: " + area.toFixed(2));
+
+5. function rotateString(str) {
+  setInterval(() => {
+    str = str.charAt(str.length - 1) + str.substring(0, str.length - 1);
+    console.log(str);
+  }, 1000);
+}
+rotateString('w3resource');
+
+6. function isLeapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+}
+console.log(isLeapYear(2024)); 
+console.log(isLeapYear(2100)); 
+
+7. for (let year = 2014; year <= 2050; year++) {
+  const d = new Date(year, 0, 1);
+  if (d.getDay() === 0) {
+    console.log("1st January is Sunday in: " + year);
+  }
+}
+
+
+8. const num = Math.floor(Math.random() * 10) + 1;
+const guess = parseInt(prompt("Guess a number between 1 and 10:"));
+
+if (guess === num) {
+  alert("Good Work");
+} else {
+  alert("Not matched. The correct number was " + num);
+}
+
+9. const today = new Date();
+const currentYear = today.getFullYear();
+let christmas = new Date(currentYear, 11, 25); // December = 11
+
+// If Christmas already passed this year, use next year's Christmas
+if (today > christmas) {
+  christmas = new Date(currentYear + 1, 11, 25);
+}
+
+const oneDay = 1000 * 60 * 60 * 24;
+const diff = Math.ceil((christmas - today) / oneDay);
+console.log(`There are ${diff} days left until Christmas!`);
+
+10. <!DOCTYPE html>
+<html>
+<body>
+  <h3>Enter two numbers:</h3>
+  <input type="number" id="num1" placeholder="First Number">
+  <input type="number" id="num2" placeholder="Second Number">
+  <br><br>
+  <button onclick="multiply()">Multiply</button>
+  <button onclick="divide()">Divide</button>
+  <p id="result"></p>
+
+  <script>
+    function multiply() {
+      const a = parseFloat(document.getElementById("num1").value);
+      const b = parseFloat(document.getElementById("num2").value);
+      document.getElementById("result").innerText = "Multiplication: " + (a * b);
+    }
+
+    function divide() {
+      const a = parseFloat(document.getElementById("num1").value);
+      const b = parseFloat(document.getElementById("num2").value);
+      if (b !== 0) {
+        document.getElementById("result").innerText = "Division: " + (a / b);
+      } else {
+        document.getElementById("result").innerText = "Cannot divide by zero!";
+      }
+    }
+  </script>
+</body>
+</html>
+
+11. function celsiusToFahrenheit(celsius) {
+  return (celsius * 9/5) + 32;
+}
+
+function fahrenheitToCelsius(fahrenheit) {
+  return (fahrenheit - 32) * 5/9;
+}
+
+const c = 60;
+const f = 45;
+console.log(`${c}°C is ${celsiusToFahrenheit(c)} °F`);
+console.log(`${f}°F is ${fahrenheitToCelsius(f)} °C`);
+
+
+12. console.log("Current URL is: " + window.location.href);
+
+10. <!DOCTYPE html>
+<html>
+<head>
+  <title>Multiplication and Division</title>
+</head>
+<body>
+
+  <h2>Multiplication and Division Calculator</h2>
+
+  <form id="calcForm">
+    <label for="num1">Enter First Number:</label>
+    <input type="number" id="num1" required><br><br>
+
+    <label for="num2">Enter Second Number:</label>
+    <input type="number" id="num2" required><br><br>
+
+    <input type="button" value="Multiply" onclick="multiplyNumbers()">
+    <input type="button" value="Divide" onclick="divideNumbers()">
+  </form>
+
+  <h3 id="result"></h3>
+
+  <script>
+    function multiplyNumbers() {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      const result = num1 * num2;
+      document.getElementById("result").innerText = `Result of Multiplication: ${result}`;
+    }
+
+    function divideNumbers() {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      if (num2 === 0) {
+        document.getElementById("result").innerText = "Division by zero is not allowed.";
+      } else {
+        const result = num1 / num2;
+        document.getElementById("result").innerText = `Result of Division: ${result}`;
+      }
+    }
+  </script>
+
+</body>
+</html>

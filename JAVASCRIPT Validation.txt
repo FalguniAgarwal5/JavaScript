@@ -1,0 +1,157 @@
+1.  function isFirstCharUpper(str) {
+  return /^[A-Z]/.test(str);
+}
+
+console.log(isFirstCharUpper("Hello"));  
+console.log(isFirstCharUpper("hello")); 
+
+2. function isValidCreditCard(cardNumber) {
+  return /^\d{16}$/.test(cardNumber);
+}
+
+console.log(isValidCreditCard("1234567812345678")); 
+console.log(isValidCreditCard("1234-5678-1234-5678")); 
+
+3. function isValidEmail(email) {
+  const pattern = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$/;
+  return pattern.test(email);
+}
+
+console.log(isValidEmail("user.name+test@example.com")); 
+console.log(isValidEmail(".username@example.com")); 
+
+4. function extractDate(str) {
+  const match = str.match(/\b\d{2}[\/\-\.]\d{2}[\/\-\.]\d{4}\b/);
+  return match ? match[0] : "No date found";
+}
+
+console.log(extractDate("The event is on 22/06/2025."));
+console.log(extractDate("No date here."));
+
+5. function customTrim(str) {
+  return str.replace(/^\s+|\s+$/g, '');
+}
+
+console.log(customTrim("   Hello World!   ")); 
+
+6. function wordCount(str) {
+  return str
+    .trim()
+    .replace(/\s{2,}/g, ' ')     // replace 2+ spaces with 1
+    .replace(/^\s*\n/gm, '')     // remove newlines with leading spaces
+    .split(' ')
+    .filter(Boolean).length;
+}
+
+console.log(wordCount("  This is   a test\n string with   words.  "));
+
+
+7. function isValidIP(ip) {
+  return /^(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)(\.(?!$)|$){4}$/.test(ip);
+}
+
+console.log(isValidIP("192.168.1.1")); 
+console.log(isValidIP("999.999.999.999"));
+
+
+8.  function countVowels(str) {
+  const match = str.match(/[aeiouAEIOU]/g);
+  return match ? match.length : 0;
+}
+
+console.log(countVowels("United States")); 
+
+
+9.   function isValidURL(url) {
+  const pattern = /^(https?:\/\/)?([a-z\d-]+\.)+[a-z]{2,6}(\/.*)?$/i;
+  return pattern.test(url);
+}
+
+console.log(isValidURL("https://example.com")); 
+
+10. function isAlphaNumeric(str) {
+  return /^[a-z0-9]+$/i.test(str);
+}
+
+console.log(isAlphaNumeric("abc123")); 
+console.log(isAlphaNumeric("abc_123")); 
+
+11.  function isValidTime(time) {
+  return /^([01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/.test(time);
+}
+
+console.log(isValidTime("23:45")); 
+console.log(isValidTime("12:60")); 
+
+
+12.  function isUSZipCode(zip) {
+  return /^\d{5}(-\d{4})?$/.test(zip);
+}
+
+console.log(isUSZipCode("12345")); 
+console.log(isUSZipCode("12345-6789"));
+
+
+13.   function isUKPostCode(code) {
+  return /^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/i.test(code);
+}
+
+console.log(isUKPostCode("EC1A 1BB")); 
+
+14. function isCanadaPostCode(code) {
+  return /^[A-Z]\d[A-Z] ?\d[A-Z]\d$/i.test(code);
+}
+
+console.log(isCanadaPostCode("K1A 0B1")); 
+
+
+15. function isSSN(value) {
+  return /^\d{3}-\d{2}-\d{4}$/.test(value);
+}
+
+console.log(isSSN("123-45-6789")); 
+
+
+16. function isHexNumber(val) {
+  return /^0x[0-9a-fA-F]+$/.test(val);
+}
+
+console.log(isHexNumber("0x1A3F"));
+
+17.  function isHexColor(code) {
+  return /^#?([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$/.test(code);
+}
+
+console.log(isHexColor("#fff")); 
+console.log(isHexColor("123456"));
+
+
+18.  function isDomainName(domain) {
+  return /^([a-z\d]([a-z\d-]{0,61}[a-z\d])?\.)+[a-z]{2,}$/i.test(domain);
+}
+
+console.log(isDomainName("example.com")); 
+
+19. function isHTML(str) {
+  return /<[^>]+>/.test(str);
+}
+
+console.log(isHTML("<div>Hello</div>")); 
+console.log(isHTML("Plain text")); 
+
+20. function isAlphaDashUnderscore(str) {
+  return /^[a-zA-Z-_]+$/.test(str);
+}
+
+console.log(isAlphaDashUnderscore("abc-xyz_ABC")); 
+console.log(isAlphaDashUnderscore("123")); 
+
+
+21.  function thousands_separators(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// Test Cases
+console.log(thousands_separators(1000));       
+console.log(thousands_separators(10000.23));   
+console.log(thousands_separators(100000));     

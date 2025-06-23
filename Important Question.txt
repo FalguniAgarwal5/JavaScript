@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini JavaScript Projects</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { color: darkblue; }
+    button { margin: 5px 0; padding: 8px 12px; }
+    pre { background: #f4f4f4; padding: 10px; border-left: 3px solid #ccc; }
+  </style>
+</head>
+<body>
+
+  <h1>Mini JavaScript Projects</h1>
+
+  <h2>1. The Movie Database</h2>
+  <button onclick="printMovie()">Show Movie Info</button>
+
+  <h2>2. The Reading List</h2>
+  <button onclick="showBooks()">Show Reading List</button>
+
+  <h2>3. The Recipe Card</h2>
+  <button onclick="showRecipe()">Show Recipe</button>
+
+  <h2>4. The Fortune Teller</h2>
+  <button onclick="showFortunes()">Tell Fortune</button>
+
+  <h2>5. The Age Calculator</h2>
+  <button onclick="showAges()">Calculate Age</button>
+
+  <h2>6. The Lifetime Supply Calculator</h2>
+  <button onclick="showSupplies()">Calculate Supply</button>
+
+  <h2>7. The Geometrizer</h2>
+  <button onclick="showGeometry()">Calculate Circle Properties</button>
+
+  <h2>8. The Temperature Converter</h2>
+  <button onclick="convertTemperatures()">Convert Temperature</button>
+
+  <script>
+    // 1. Movie Database
+    const favoriteMovie = {
+      title: "Puff the Magic Dragon",
+      duration: 30,
+      stars: ["Puff", "Jackie", "Living Sneezes"]
+    };
+    function printMovie() {
+      alert(`${favoriteMovie.title} lasts for ${favoriteMovie.duration} minutes. Stars: ${favoriteMovie.stars.join(", ")}.`);
+    }
+
+    // 2. Reading List
+    const books = [
+      { title: "The Hobbit", author: "J.R.R. Tolkien", alreadyRead: true },
+      { title: "The Lord of the Rings", author: "J.R.R. Tolkien", alreadyRead: false },
+      { title: "Harry Potter", author: "J.K. Rowling", alreadyRead: true }
+    ];
+    function showBooks() {
+      books.forEach(book => {
+        const info = `"${book.title}" by ${book.author}`;
+        if (book.alreadyRead) {
+          alert(`You already read ${info}`);
+        } else {
+          alert(`You still need to read ${info}`);
+        }
+      });
+    }
+
+    // 3. Recipe Card
+    const recipe = {
+      title: "Mole",
+      servings: 2,
+      ingredients: ["cinnamon", "cumin", "cocoa"]
+    };
+    function showRecipe() {
+      alert(`${recipe.title}\nServes: ${recipe.servings}\nIngredients:\n- ${recipe.ingredients.join("\n- ")}`);
+    }
+
+    // 4. Fortune Teller
+    function tellFortune(children, partner, location, job) {
+      alert(`You will be a ${job} in ${location}, and married to ${partner} with ${children} kids.`);
+    }
+    function showFortunes() {
+      tellFortune(2, "Emma", "New York", "Developer");
+      tellFortune(3, "Alex", "Paris", "Designer");
+      tellFortune(0, "Taylor", "Tokyo", "Artist");
+    }
+
+    // 5. Age Calculator
+    function calculateAge(birthYear, currentYear) {
+      const age1 = currentYear - birthYear;
+      const age2 = age1 - 1;
+      alert(`You are either ${age2} or ${age1}`);
+    }
+    function showAges() {
+      const currentYear = new Date().getFullYear();
+      calculateAge(2000, currentYear);
+      calculateAge(1995, currentYear);
+      calculateAge(2010, currentYear);
+    }
+
+    // 6. Lifetime Supply
+    function calculateSupply(age, amountPerDay) {
+      const maxAge = 85;
+      const yearsLeft = maxAge - age;
+      const total = Math.round(amountPerDay * 365 * yearsLeft);
+      alert(`You will need ${total} units to last you until the ripe old age of ${maxAge}`);
+    }
+    function showSupplies() {
+      calculateSupply(25, 3);
+      calculateSupply(40, 2.5);
+      calculateSupply(60, 1.2);
+    }
+
+    // 7. Geometrizer
+    function calcCircumference(radius) {
+      const circumference = 2 * Math.PI * radius;
+      alert(`The circumference is ${circumference.toFixed(2)}`);
+    }
+    function calcArea(radius) {
+      const area = Math.PI * radius * radius;
+      alert(`The area is ${area.toFixed(2)}`);
+    }
+    function showGeometry() {
+      calcCircumference(5);
+      calcArea(5);
+    }
+
+    // 8. Temperature Converter
+    function celsiusToFahrenheit(celsius) {
+      const fahrenheit = (celsius * 9 / 5) + 32;
+      alert(`${celsius}°C is ${fahrenheit.toFixed(2)}°F`);
+    }
+    function fahrenheitToCelsius(fahrenheit) {
+      const celsius = (fahrenheit - 32) * 5 / 9;
+      alert(`${fahrenheit}°F is ${celsius.toFixed(2)}°C`);
+    }
+    function convertTemperatures() {
+      celsiusToFahrenheit(30);
+      fahrenheitToCelsius(86);
+    }
+  </script>
+
+</body>
+</html>

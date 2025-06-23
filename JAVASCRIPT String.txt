@@ -1,0 +1,396 @@
+1. function is_string(input) {
+  return typeof input === 'string' || input instanceof String;
+}
+
+// Test Data
+console.log(is_string('w3resource')); 
+console.log(is_string([1, 2, 4, 0])); 
+
+2. function is_Blank(input) {
+  return input === '';
+}
+
+// Test Data
+console.log(is_Blank(''));     
+console.log(is_Blank('abc'));  
+
+3.  function string_to_array(str) {
+  return str.trim().split(" ");
+}
+
+// Test Data
+console.log(string_to_array("Robin Singh")); 
+
+4. function truncate_string(str, num) {
+  return str.substring(0, num);
+}
+
+// Test Data
+console.log(truncate_string("Robin Singh", 4)); 
+
+5. function abbrev_name(name) {
+  let parts = name.split(" ");
+  if (parts.length > 1) {
+    return parts[0] + " " + parts[1].charAt(0).toUpperCase() + ".";
+  }
+  return name;
+}
+
+// Test Data
+console.log(abbrev_name("Robin Singh")); 
+
+6.  function protect_email(email) {
+  let [user, domain] = email.split("@");
+  let visible = user.slice(0, user.indexOf("_") !== -1 ? user.indexOf("_") : Math.floor(user.length / 2));
+  return visible + "...@" + domain;
+}
+
+// Test Data
+console.log(protect_email("robin_singh@example.com")); 
+
+
+7. function string_parameterize(str) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+// Test Data
+console.log(string_parameterize("Robin Singh from USA.")); 
+
+8. function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Test Data
+console.log(capitalize('js string exercises')); 
+
+
+9.  function capitalize_Words(str) {
+  return str.split(' ').map(word => capitalize(word)).join(' ');
+}
+
+// Test Data
+console.log(capitalize_Words('js string exercises')); 
+
+
+10.  function swapcase(str) {
+  return str.split('').map(char => {
+    if (char === char.toUpperCase()) {
+      return char.toLowerCase();
+    } else {
+      return char.toUpperCase();
+    }
+  }).join('');
+}
+
+// Test Data
+console.log(swapcase('AaBbc')); 
+
+
+11. function camelize(str) {
+  return str
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
+      index === 0 ? word.toUpperCase() : word.toUpperCase()
+    )
+    .replace(/\s+/g, '');
+}
+
+// Test Data
+console.log(camelize("JavaScript Exercises"));   
+console.log(camelize("JavaScript exercises"));   
+console.log(camelize("JavaScriptExercises"));    
+
+12. function uncamelize(str, separator = ' ') {
+  return str.replace(/([a-z])([A-Z])/g, `$1${separator}$2`).toLowerCase();
+}
+
+// Test Data
+console.log(uncamelize('helloWorld'));        
+console.log(uncamelize('helloWorld','-'));   
+console.log(uncamelize('helloWorld','_'));    
+
+
+13. function repeat(str, n = 1) {
+  return str.repeat(n);
+}
+
+// Test Data
+console.log(repeat('Ha!'));      
+console.log(repeat('Ha!', 2));   
+console.log(repeat('Ha!', 3));   
+
+14.  function insert(original, insertStr = '', position = 0) {
+  return original.slice(0, position) + insertStr + original.slice(position);
+}
+
+// Test Data
+console.log(insert('We are doing some exercises.'));                        
+console.log(insert('We are doing some exercises.', 'JavaScript '));       
+console.log(insert('We are doing some exercises.', 'JavaScript ', 18));   
+
+15. function humanize_format(num) {
+  if (num === undefined || num === null) return;
+
+  const j = num % 10,
+        k = num % 100;
+
+  if (j === 1 && k !== 11) return num + "st";
+  if (j === 2 && k !== 12) return num + "nd";
+  if (j === 3 && k !== 13) return num + "rd";
+  return num + "th";
+}
+
+// Test Data
+console.log(humanize_format());       
+console.log(humanize_format(1));      
+console.log(humanize_format(8));      
+console.log(humanize_format(301));    
+console.log(humanize_format(402));    
+
+16.  function text_truncate(str, length = str.length, ending = '…') {
+  if (str.length <= length) return str;
+  return str.slice(0, length - ending.length) + ending;
+}
+
+// Test Data
+console.log(text_truncate('We are doing JS string exercises.'));           
+console.log(text_truncate('We are doing JS string exercises.', 19));       
+console.log(text_truncate('We are doing JS string exercises.', 15, '!!')); 
+
+17. function string_chop(str, size = str.length) {
+  if (!str) return [];
+  const result = [];
+  for (let i = 0; i < str.length; i += size) {
+    result.push(str.slice(i, i + size));
+  }
+  return result;
+}
+
+// Test Data
+console.log(string_chop('w3resource'));      
+console.log(string_chop('w3resource', 2));  
+console.log(string_chop('w3resource', 3));  
+
+
+18.  function count(mainStr, subStr, caseSensitive = true) {
+  if (!caseSensitive) {
+    mainStr = mainStr.toLowerCase();
+    subStr = subStr.toLowerCase();
+  }
+
+  const pattern = new RegExp(subStr, 'g');
+  const matches = mainStr.match(pattern);
+  return matches ? matches.length : 0;
+}
+
+// Test Data
+console.log(count("The quick brown fox jumps over the lazy dog", 'the'));          
+console.log(count("The quick brown fox jumps over the lazy dog", 'fox', false));   
+
+
+19. function escape_HTML(str) {
+  return str.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+}
+
+// Test Data
+console.log(escape_HTML('<a href="javascript-string-exercise-17.php" target="_blank">'));
+
+
+20. function formatted_string(pad, str, dir) {
+  if (dir === 'l') {
+    return (pad + str).slice(-pad.length);
+  } else {
+    return (str + pad).substring(0, pad.length);
+  }
+}
+
+// Test Data
+console.log(formatted_string('0000', 123, 'l'));  
+console.log(formatted_string('00000000', 123, ''));
+
+
+21.   function repeat_string(str, count) {
+  if (typeof str !== "string" || typeof count !== "number" || count < 0) {
+    return "Error in string or count.";
+  }
+  return str.repeat(count);
+}
+
+// Test Data
+console.log(repeat_string('a', 4)); 
+console.log(repeat_string('a'));    
+
+
+22. function subStrAfterChars(str, char, pos) {
+  const index = str.indexOf(char);
+  if (index === -1) return str;
+
+  return pos === 'a' ? str.substring(0, index) : str.substring(index + 1);
+}
+
+// Test Data
+console.log(subStrAfterChars('w3resource: JavaScript Exercises', ':','a')); 
+console.log(subStrAfterChars('w3resource: JavaScript Exercises', 'E','b')); 
+
+
+23.  function strip(str) {
+  return str.trim();
+}
+
+// Test Data
+console.log(strip('w3resource '));  
+console.log(strip(' w3resource'));   
+console.log(strip(' w3resource '));
+
+24. function truncate(str, numWords) {
+  return str.split(" ").slice(0, numWords).join(" ");
+}
+
+// Test Data
+console.log(truncate('The quick brown fox jumps over the lazy dog', 4)); 
+
+
+25. function alphabetize_string(str) {
+  return str.replace(/\s+/g, '')  // Remove all spaces
+            .split('')            // Convert string to array
+            .sort()               // Sort alphabetically
+            .join('');            // Join back to string
+}
+
+// Test Data
+console.log(alphabetize_string('United States')); 
+
+26. function remove_first_occurrence(str, searchStr) {
+  return str.replace(searchStr, '');
+}
+
+// Test Data
+console.log(remove_first_occurrence("The quick brown fox jumps over the lazy dog", 'the'));
+
+27. function ascii_to_hexa(str) {
+  return str.split('')
+            .map(char => char.charCodeAt(0).toString(16))
+            .join('');
+}
+
+// Test Data
+console.log(ascii_to_hexa('12'));   
+console.log(ascii_to_hexa('100'));  
+
+
+28. function hex_to_ascii(hex) {
+  let str = '';
+  for (let i = 0; i < hex.length; i += 2) {
+    str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+  }
+  return str;
+}
+
+// Test Data
+console.log(hex_to_ascii('3132'));   
+console.log(hex_to_ascii('313030')); 
+
+29. function search_word(str, word) {
+  const pattern = new RegExp(`\\b${word}\\b`, 'gi');
+  const matches = str.match(pattern);
+  const count = matches ? matches.length : 0;
+  return `'${word}' was found ${count} times.`;
+}
+
+// Test Data
+console.log(search_word('The quick brown fox', 'fox'));        
+console.log(search_word('aa, bb, cc, dd, aa', 'aa'));             
+
+
+30. function string_endsWith(str, suffix) {
+  if (suffix === '') return false;
+  return str.endsWith(suffix);
+}
+
+// Test Data
+console.log(string_endsWith('JS PHP PYTHON', 'PYTHON'));
+console.log(string_endsWith('JS PHP PYTHON', ''));      
+
+31. function escape_html(str) {
+  return str.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+}
+
+// Test Data
+console.log(escape_html('PHP & MySQL')); 
+console.log(escape_html('3 > 2'));       
+
+32. function remove_non_ascii(str) {
+  return str.replace(/[^\x20-\x7E]/g, '');
+}
+
+// Test Data
+console.log(remove_non_ascii('äÄçÇéÉêPHP-MySQLöÖÐþúÚ')); 
+
+
+33. function remove_non_word(str) {
+  return str.replace(/[^\w\s-]/g, '');
+}
+
+// Test Data
+console.log(remove_non_word('PHP ~!@#$%^&*()+`-={}[]|\\:";\'/?><., MySQL')); 
+
+
+34.  function sentenceCase(str) {
+  return str.toLowerCase().replace(/(^\w|\.\s*\w)/g, function(char) {
+    return char.toUpperCase();
+  });
+}
+
+// Test Data
+console.log(sentenceCase('PHP exercises. python exercises.')); 
+
+
+35.  function strip_html_tags(str) {
+  return str.replace(/<[^>]*>/g, '');
+}
+
+// Test Data
+console.log(strip_html_tags('<p><strong><em>PHP Exercises</em></strong></p>')); 
+
+
+36.  function zeroFill(number, width, sign = '') {
+  let numStr = Math.abs(number).toString();
+  let zeros = width - numStr.length;
+
+  let prefix = zeros > 0 ? '0'.repeat(zeros) + numStr : numStr;
+
+  if (sign === '-') {
+    return '+' + prefix;
+  }
+  return prefix;
+}
+
+// Test Data
+console.log(zeroFill(120, 5, '-')); 
+console.log(zeroFill(29, 4));       
+
+
+37. function compare_strings(str1, str2) {
+  return str1.toLowerCase() === str2.toLowerCase();
+}
+
+// Test Data
+console.log(compare_strings('abcd', 'AbcD')); 
+console.log(compare_strings('ABCD', 'Abce'));
+
+
+38.  function case_insensitive_search(str, searchTerm) {
+  return str.toLowerCase().includes(searchTerm.toLowerCase()) ? "Matched" : "Not Matched";
+}
+
+// Test Data
+console.log(case_insensitive_search('JavaScript Exercises', 'exercises'));     
+console.log(case_insensitive_search('JavaScript Exercises', 'Exercises'));     
+console.log(case_insensitive_search('JavaScript Exercises', 'Exercisess'));    

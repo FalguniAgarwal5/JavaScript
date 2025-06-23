@@ -1,0 +1,407 @@
+1. <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>JS DOM paragraph style</title>
+</head>
+<body>
+
+  <p id="text">JavaScript Exercises - w3resource</p>
+
+  <div>
+    <button id="jsstyle" onclick="js_style()">Style</button>
+  </div>
+
+  <script>
+    function js_style() {
+      let para = document.getElementById("text");
+      para.style.fontFamily = "Arial, sans-serif";
+      para.style.fontSize = "20px";
+      para.style.color = "blue";
+    }
+  </script>
+
+</body>
+</html>
+
+2. <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Return first and last name from a form - w3resource</title>
+</head>
+<body>
+
+  <form id="form1" onsubmit="getFormvalue(event)">
+    First name: <input type="text" name="fname" value="David"><br>
+    Last name: <input type="text" name="lname" value="Beckham"><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function getFormvalue(e) {
+      e.preventDefault(); // Stop the form from submitting
+
+      // Access form elements by name
+      const firstName = document.forms["form1"]["fname"].value;
+      const lastName = document.forms["form1"]["lname"].value;
+
+      // Output result (can also log or use somewhere else)
+      alert("First Name: " + firstName + "\nLast Name: " + lastName);
+    }
+  </script>
+
+</body>
+</html>
+
+
+3. <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Set Paragraph Background</title>
+</head>
+<body>
+
+  <p id="myPara">This is a sample paragraph.</p>
+  <button onclick="setBackground()">Set Background Color</button>
+
+  <script>
+    function setBackground() {
+      document.getElementById("myPara").style.backgroundColor = "lightblue";
+    }
+  </script>
+
+</body>
+</html>
+
+
+4. <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Get Link Attributes</title>
+</head>
+<body>
+
+  <p>
+    <a id="w3r" type="text/html" hreflang="en-us" rel="nofollow" target="_self" href="http://www.w3resource.com/">
+      w3resource
+    </a>
+  </p>
+
+  <button onclick="getAttributes()">Click here to get attributes value</button>
+
+  <script>
+    function getAttributes() {
+      const link = document.getElementById("w3r");
+
+      const href = link.getAttribute("href");
+      const hreflang = link.getAttribute("hreflang");
+      const rel = link.getAttribute("rel");
+      const target = link.getAttribute("target");
+      const type = link.getAttribute("type");
+
+      alert("href: " + href +
+            "\nhreflang: " + hreflang +
+            "\nrel: " + rel +
+            "\ntarget: " + target +
+            "\ntype: " + type);
+    }
+  </script>
+
+</body>
+</html>
+
+
+5.  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Insert row in a table - w3resource</title>
+</head>
+<body>
+
+  <table id="sampleTable" border="1">
+    <tr>
+      <td>Row1 cell1</td>
+      <td>Row1 cell2</td>
+    </tr>
+    <tr>
+      <td>Row2 cell1</td>
+      <td>Row2 cell2</td>
+    </tr>
+  </table>
+  <br>
+
+  <input type="button" onclick="insert_Row()" value="Insert row">
+
+  <script>
+    function insert_Row() {
+      const table = document.getElementById("sampleTable");
+
+      // Create a new row and insert it at the top (index 0)
+      const newRow = table.insertRow(0);
+
+      // Insert two new cells (columns) in the new row
+      const cell1 = newRow.insertCell(0);
+      const cell2 = newRow.insertCell(1);
+
+      // Set text content of the new cells
+      cell1.innerHTML = "New Row cell1";
+      cell2.innerHTML = "New Row cell2";
+    }
+  </script>
+
+</body>
+</html>
+
+
+6. <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Change the content of a cell</title>
+</head>
+<body>
+
+  <table id="myTable" border="1">
+    <tr><td>Row1 cell1</td><td>Row1 cell2</td></tr>
+    <tr><td>Row2 cell1</td><td>Row2 cell2</td></tr>
+    <tr><td>Row3 cell1</td><td>Row3 cell2</td></tr>
+  </table>
+
+  <br>
+  Row: <input type="number" id="row" min="0">
+  Column: <input type="number" id="col" min="0">
+  New Content: <input type="text" id="content">
+  <input type="button" onclick="changeContent()" value="Change content">
+
+  <script>
+    function changeContent() {
+      const row = parseInt(document.getElementById("row").value);
+      const col = parseInt(document.getElementById("col").value);
+      const content = document.getElementById("content").value;
+
+      const table = document.getElementById("myTable");
+
+      if (table.rows[row] && table.rows[row].cells[col]) {
+        table.rows[row].cells[col].innerHTML = content;
+      } else {
+        alert("Invalid row or column number.");
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
+7.  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Create Table with Dynamic Content</title>
+  <style>
+    body { margin: 30px; }
+  </style>
+</head>
+<body>
+
+  Rows: <input type="number" id="rows" min="1">
+  Columns: <input type="number" id="cols" min="1">
+  <input type="button" onclick="createTable()" value="Create the table">
+
+  <br><br>
+  <table id="myTable" border="1"></table>
+
+  <script>
+    function createTable() {
+      const rowCount = parseInt(document.getElementById("rows").value);
+      const colCount = parseInt(document.getElementById("cols").value);
+      const table = document.getElementById("myTable");
+
+      // Clear any previous content
+      table.innerHTML = "";
+
+      for (let i = 0; i < rowCount; i++) {
+        const row = table.insertRow();
+        for (let j = 0; j < colCount; j++) {
+          const cell = row.insertCell();
+          cell.innerHTML = "Row-" + i + " Column-" + j;
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
+8.  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Remove items from a dropdown list</title>
+</head>
+<body>
+
+  <form>
+    <select id="colorSelect">
+      <option>Red</option>
+      <option>Green</option>
+      <option>White</option>
+      <option>Black</option>
+    </select>
+    <input type="button" onclick="removecolor()" value="Select and Remove"><br>
+  </form>
+
+  <script>
+    function removecolor() {
+      const select = document.getElementById("colorSelect");
+      if (select.selectedIndex >= 0) {
+        select.remove(select.selectedIndex);
+      } else {
+        alert("Please select an option to remove.");
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
+9.  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Count and display items of a dropdown list - w3resource</title>
+  <style>
+    body { margin: 30px; }
+  </style>
+</head>
+<body>
+
+  <form>
+    Select your favorite Color :
+    <select id="mySelect">
+      <option>Red</option>
+      <option>Green</option>
+      <option>Blue</option>
+      <option>White</option>
+    </select>
+    <input type="button" onclick="countItems()" value="Count and Show">
+  </form>
+
+  <script>
+    function countItems() {
+      const select = document.getElementById("mySelect");
+      const count = select.options.length;
+      let items = "Items in dropdown:\n";
+
+      for (let i = 0; i < count; i++) {
+        items += (i + 1) + ". " + select.options[i].text + "\n";
+      }
+
+      alert("Total items: " + count + "\n\n" + items);
+    }
+  </script>
+
+</body>
+</html>
+
+11. <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Random Image Display</title>
+</head>
+<body>
+
+  <button onclick="displayRandomImage()">Show Random Image</button>
+  <br><br>
+  <img id="randomImage" src="" alt="Image will appear here" />
+
+  <script>
+    const images = [
+      { url: "http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg", width: "240", height: "160" },
+      { url: "http://farm1.staticflickr.com/33/45336904_1aef569b30_n.jpg", width: "320", height: "195" },
+      { url: "http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg", width: "500", height: "343" }
+    ];
+
+    function displayRandomImage() {
+      const img = document.getElementById("randomImage");
+      const randomIndex = Math.floor(Math.random() * images.length);
+      const selected = images[randomIndex];
+
+      img.src = selected.url;
+      img.width = selected.width;
+      img.height = selected.height;
+    }
+  </script>
+
+</body>
+</html>
+
+
+12.  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Highlight Bold Words</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#" onmouseover="highlightBold(true)" onmouseout="highlightBold(false)">
+    On mouse over here bold words of the following paragraph will be highlighted
+  </a>
+
+  <p id="paragraph">
+    We have just started this section for the users (<b>beginner</b> to <b>intermediate</b>) who want to work with various <b>JavaScript</b> problems and write scripts online to test their <b>JavaScript</b> skill.
+  </p>
+
+  <script>
+    function highlightBold(shouldHighlight) {
+      const boldWords = document.getElementById("paragraph").getElementsByTagName("b");
+      for (let i = 0; i < boldWords.length; i++) {
+        boldWords[i].className = shouldHighlight ? "highlight" : "";
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
+13.  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Window Resize Display</title>
+</head>
+<body>
+
+  <h3>Resize the window to see width and height update:</h3>
+  <p id="sizeDisplay"></p>
+
+  <script>
+    function updateWindowSize() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      document.getElementById("sizeDisplay").innerText = `Width: ${width}px, Height: ${height}px`;
+    }
+
+    // Run once on page load
+    updateWindowSize();
+
+    // Run every time the window is resized
+    window.onresize = updateWindowSize;
+  </script>
+
+</body>
+</html>

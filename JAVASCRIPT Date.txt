@@ -1,0 +1,530 @@
+1.  function is_date(input) {
+  return Object.prototype.toString.call(input) === '[object Date]';
+}
+
+// Test Cases
+console.log(is_date("October 13, 2014 11:13:00")); 
+console.log(is_date(new Date(86400000)));          
+console.log(is_date(new Date(99, 5, 24, 11, 33, 30, 0))); 
+console.log(is_date([1, 2, 4, 0]));       
+
+
+2. function curday(separator = '/') {
+  const now = new Date();
+
+  const day = ("0" + now.getDate()).slice(-2); // Add 0 before single digits (1 → 01)
+  const month = ("0" + (now.getMonth() + 1)).slice(-2); // Months are 0-indexed
+  const year = now.getFullYear();
+
+  return `${month}${separator}${day}${separator}${year}`;
+}
+
+// Test Cases
+console.log(curday('/')); 
+console.log(curday('-'));   
+
+
+3.  function getDaysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
+
+// Test Cases
+console.log(getDaysInMonth(1, 2012)); 
+console.log(getDaysInMonth(2, 2012));  
+console.log(getDaysInMonth(9, 2012)); 
+console.log(getDaysInMonth(12, 2012));   
+
+4.   function month_name(date) {
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  return monthNames[date.getMonth()];
+}
+
+// Test Data
+console.log(month_name(new Date("10/11/2009")));   
+console.log(month_name(new Date("11/13/2014")));   
+
+5. function compare_dates(date1, date2) {
+  if (date1.getTime() === date2.getTime()) {
+    return "Date1 = Date2";
+  } else if (date1.getTime() > date2.getTime()) {
+    return "Date1 > Date2";
+  } else {
+    return "Date2 > Date1";
+  }
+}
+
+// Test Data
+console.log(compare_dates(new Date('11/14/2013 00:00'), new Date('11/14/2013 00:00'))); 
+console.log(compare_dates(new Date('11/14/2013 00:01'), new Date('11/14/2013 00:00'))); 
+console.log(compare_dates(new Date('11/14/2013 00:00'), new Date('11/14/2013 00:01')));      
+
+
+6.  function add_minutes(date, minutes) {
+  return new Date(date.getTime() + minutes * 60000);
+}
+
+// Test Data
+console.log(add_minutes(new Date(2014, 10, 2), 30).toString());
+
+
+7. function is_weekend(dateString) {
+  const date = new Date(dateString);
+  const day = date.getDay(); // 0 = Sunday, 6 = Saturday
+
+  if (day === 0 || day === 6) {
+    return "weekend";
+  }
+}
+
+// Test Data
+console.log(is_weekend('Nov 15, 2014')); 
+console.log(is_weekend('Nov 16, 2014')); 
+console.log(is_weekend('Nov 17, 2014')); 
+
+
+8.  function date_diff_indays(date1, date2) {
+  const dt1 = new Date(date1);
+  const dt2 = new Date(date2);
+  const diffTime = dt2.getTime() - dt1.getTime();
+  const diffDays = diffTime / (1000 * 3600 * 24);
+  return Math.floor(diffDays); // Use Math.floor to get integer difference
+}
+
+// Test Data
+console.log(date_diff_indays('04/02/2014', '11/04/2014')); 
+console.log(date_diff_indays('12/02/2014', '11/04/2014')); 
+
+
+9.  function lastday(year, month) {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+// Test Data
+console.log(lastday(2014, 0));  
+console.log(lastday(2014, 1));  
+console.log(lastday(2014, 11)); 
+
+10. function yesterday(dateStr) {
+  const date = new Date(dateStr);
+  date.setDate(date.getDate() - 1); // Subtract one day
+  return date.toString();
+}
+
+// Test Data
+console.log(yesterday('Nov 15, 2014')); // 
+console.log(yesterday('Nov 16, 2015'));
+console.log(yesterday('Nov 17, 2016')); 
+
+11. function max_date(dates) {
+  return new Date(Math.max.apply(null, dates.map(date => new Date(date)))).toISOString().split('T')[0];
+}
+
+// Test Data
+console.log(max_date(['2015/02/01', '2015/02/02', '2015/01/03'])); 
+
+12.  function min_date(dates) {
+  return new Date(Math.min.apply(null, dates.map(date => new Date(date)))).toISOString().split('T')[0];
+}
+
+// Test Data
+console.log(min_date(['2015/02/01', '2015/02/02', '2015/01/03'])); 
+
+13. function timeConvert(minutes) {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return `${minutes} minutes = ${hours} hour(s) and ${mins} minute(s).`;
+}
+
+// Test Data
+console.log(timeConvert(200)); // "200 minutes = 3 hour(s) and 20 minute(s)."
+
+14.  function days_of_a_year(year) {
+  return (new Date(year, 1, 29).getDate() === 29) ? 366 : 365;
+}
+
+// Test Data
+console.log(days_of_a_year(2015)); 
+console.log(days_of_a_year(2016)); 
+
+15.  function quarter_of_the_year(date) {
+  return Math.floor(date.getMonth() / 3) + 1;
+}
+
+// Test Data
+console.log(quarter_of_the_year(new Date(2015, 1, 21))); 
+console.log(quarter_of_the_year(new Date(2015, 10, 18)));
+
+16.   function days_passed(date) {
+  const start = new Date(date.getFullYear(), 0, 1);
+  const diff = date - start;
+  return Math.floor(diff / (1000 * 60 * 60 * 24));
+}
+
+// Test Data
+console.log(days_passed(new Date(2015, 0, 15)));  
+console.log(days_passed(new Date(2015, 11, 14))); 
+
+
+17. function convert_unix_timestamp_to_time(unix_timestamp) {
+  const date = new Date(unix_timestamp * 1000);
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const seconds = date.getSeconds().toString().padStart(2, '0');
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+
+18. function calculate_age(birthDate) {
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}
+
+// Test Data
+console.log(calculate_age(new Date(1982, 11, 4))); 
+console.log(calculate_age(new Date(1962, 1, 1)));  
+
+
+19. function day_of_the_month(date) {
+  return ("0" + date.getDate()).slice(-2);
+}
+
+// Test Data
+let d = new Date(2015, 10, 1); 
+console.log(day_of_the_month(d)); 
+
+20. function short_Days(date) {
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
+}
+
+// Test Data
+let dt = new Date(2015, 10, 1); 
+console.log(short_Days(dt)); 
+
+21. function long_Days(date) {
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  return days[date.getDay()];
+}
+
+// Test Data
+console.log(long_Days(dt)); 
+
+
+22.  function ISO_numeric_date(date) {
+  const day = date.getDay();
+  return day === 0 ? 7 : day;
+}
+
+// Test Data
+console.log(ISO_numeric_date(dt)); 
+
+
+23. function english_ordinal_suffix(date) {
+  const day = date.getDate();
+  if (day > 3 && day < 21) return day + "th";
+  switch (day % 10) {
+    case 1: return day + "st";
+    case 2: return day + "nd";
+    case 3: return day + "rd";
+    default: return day + "th";
+  }
+}
+
+// Test Data
+console.log(english_ordinal_suffix(dt)); 
+
+24. function ISO8601_week_no(date) {
+  const dt = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = dt.getUTCDay() || 7; // Make Sunday = 7
+  dt.setUTCDate(dt.getUTCDate() + 4 - dayNum); // Set to nearest Thursday
+  const yearStart = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
+  const weekNo = Math.ceil((((dt - yearStart) / 86400000) + 1) / 7);
+  return weekNo;
+}
+
+// Test Data
+console.log(ISO8601_week_no(dt)); 
+
+
+25. function full_month(date) {
+  const months = [
+    "January", "February", "March", "April", "May", "June", 
+    "July", "August", "September", "October", "November", "December"
+  ];
+  return months[date.getMonth()];
+}
+
+// Test Data
+let dt = new Date(2015, 10, 1); 
+console.log(full_month(dt)); 
+
+
+26.  function numeric_month(date) {
+  return ("0" + (date.getMonth() + 1)).slice(-2);
+}
+
+// Test Data
+console.log(numeric_month(dt)); 
+
+
+27.  function short_months(date) {
+  const shortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return shortNames[date.getMonth()];
+}
+
+// Test Data
+console.log(short_months(dt)); 
+
+
+28.  function full_year(date) {
+  return date.getFullYear();
+}
+
+// Test Data
+console.log(full_year(dt)); 
+
+
+29. function sort_year(date) {
+  return date.getFullYear().toString().slice(-2);
+}
+
+// Test Data
+dt = new Date(1989, 10, 1);
+console.log(sort_year(dt)); 
+
+30. function get_meridiem_lower(date) {
+  return date.getHours() >= 12 ? 'pm' : 'am';
+}
+
+// Test Data
+console.log(get_meridiem_lower(new Date(2025, 5, 21, 10))); 
+console.log(get_meridiem_lower(new Date(2025, 5, 21, 14))); 
+
+31. function get_meridiem_upper(date) {
+  return date.getHours() >= 12 ? 'PM' : 'AM';
+}
+
+// Test Data
+console.log(get_meridiem_upper(new Date(2025, 5, 21, 10))); 
+console.log(get_meridiem_upper(new Date(2025, 5, 21, 14))); 
+
+32. function internet_time(date) {
+  const utc = date.getUTCHours() * 3600 + date.getUTCMinutes() * 60 + date.getUTCSeconds();
+  const beats = Math.floor(((utc + 3600) % 86400) / 86.4); // +3600 to adjust to BMT (UTC+1)
+  return beats.toString().padStart(3, '0');
+}
+
+// Test Data
+let dt = new Date(1989, 10, 1); 
+console.log(internet_time(dt)); 
+
+33.  function hours_with_zeroes(date) {
+  let hours = date.getHours() % 12;
+  hours = hours === 0 ? 12 : hours; // Midnight or Noon = 12
+  return hours.toString().padStart(2, '0');
+}
+
+// Test Data
+console.log(hours_with_zeroes(dt)); 
+
+34. function hours_without_zeroes(date) {
+  return date.getHours();
+}
+
+// Test Data
+console.log(hours_without_zeroes(dt)); 
+
+35. function minutes_with_leading_zeros(date) {
+  return date.getMinutes().toString().padStart(2, '0');
+}
+
+// Test Data
+console.log(minutes_with_leading_zeros(dt)); 
+
+36. function seconds_with_leading_zeros(date) {
+  return date.getSeconds().toString().padStart(2, '0');
+}
+
+// Test Data
+console.log(seconds_with_leading_zeros(dt)); 
+
+37. function get_timezone(date) {
+  return Intl.DateTimeFormat('en-US', { timeZoneName: 'long' })
+         .formatToParts(date)
+         .find(part => part.type === 'timeZoneName').value;
+}
+
+// Test Data
+const dtNow = new Date();
+console.log(get_timezone(dtNow)); 
+
+38.  function daylights_savings(date) {
+  const jan = new Date(date.getFullYear(), 0, 1).getTimezoneOffset();
+  const jul = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
+  return date.getTimezoneOffset() < Math.max(jan, jul);
+}
+
+// Test Data
+const dt = new Date();
+console.log(daylights_savings(dt)); 
+
+39. function diff_to_GMT(date) {
+  const offset = -date.getTimezoneOffset(); // in minutes
+  const sign = offset >= 0 ? "+" : "-";
+  const hours = Math.floor(Math.abs(offset) / 60);
+  const minutes = Math.abs(offset) % 60;
+  return `${sign}${hours.toString().padStart(2, '0')}.${minutes.toString().padStart(2, '0')}0`;
+}
+
+// Test Data
+console.log(diff_to_GMT(dt)); 
+
+40. function timezone_offset_in_seconds(date) {
+  return -date.getTimezoneOffset() * 60;
+}
+
+// Test Data
+console.log(timezone_offset_in_seconds(dt)); 
+
+41. function add_years(date, years) {
+  const newDate = new Date(date);
+  newDate.setFullYear(newDate.getFullYear() + years);
+  return newDate;
+}
+
+// Test Data
+const d1 = new Date(2014, 10, 2); // Nov 2, 2014
+console.log(add_years(d1, 10).toString()); 
+
+
+42. function add_weeks(date, weeks) {
+  const newDate = new Date(date);
+  newDate.setDate(newDate.getDate() + weeks * 7);
+  return newDate;
+}
+
+// Test Data
+console.log(add_weeks(d1, 10).toString()); 
+
+43. function add_months(date, months) {
+  const newDate = new Date(date);
+  const d = newDate.getDate();
+  newDate.setMonth(newDate.getMonth() + months);
+
+  // Fix if month overflowed (e.g. Feb 30 → Mar 2)
+  if (newDate.getDate() < d) {
+    newDate.setDate(0); // last day of previous month
+  }
+
+  return newDate;
+}
+
+// Test Data
+console.log(add_months(d1, 10).toString());
+
+
+44. function diff_minutes(dt1, dt2) {
+  const diff = Math.abs(dt2 - dt1); // difference in milliseconds
+  return Math.floor(diff / (1000 * 60));
+}
+
+// Test Data
+let dt1 = new Date("October 13, 2014 11:11:00");
+let dt2 = new Date("October 13, 2014 11:13:00");
+console.log(diff_minutes(dt1, dt2)); 
+
+45. function diff_hours(dt1, dt2) {
+  const diff = Math.abs(dt2 - dt1);
+  return Math.floor(diff / (1000 * 60 * 60));
+}
+
+// Test Data
+dt1 = new Date("October 13, 2014 08:11:00");
+dt2 = new Date("October 13, 2014 11:13:00");
+console.log(diff_hours(dt1, dt2)); 
+
+46.  function diff_days(dt1, dt2) {
+  const diff = Math.abs(dt2 - dt1);
+  return Math.floor(diff / (1000 * 60 * 60 * 24));
+}
+
+// Test Data
+dt1 = new Date("October 13, 2014 08:11:00");
+dt2 = new Date("October 19, 2014 11:13:00");
+console.log(diff_days(dt1, dt2)); 
+
+47.  function diff_weeks(dt1, dt2) {
+  const diff = Math.abs(dt2 - dt1);
+  return Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
+}
+
+// Test Data
+dt1 = new Date("June 13, 2014 08:11:00");
+dt2 = new Date("October 19, 2014 11:13:00");
+console.log(diff_weeks(dt1, dt2));
+
+
+48. function diff_months(dt1, dt2) {
+  const yearDiff = dt2.getFullYear() - dt1.getFullYear();
+  const monthDiff = dt2.getMonth() - dt1.getMonth();
+  return yearDiff * 12 + monthDiff;
+}
+
+// Test Data
+dt1 = new Date("June 13, 2014 08:11:00");
+dt2 = new Date("October 19, 2014 11:13:00");
+console.log(diff_months(dt1, dt2)); 
+
+
+49. function diff_years(dt1, dt2) {
+  return Math.abs(dt2.getFullYear() - dt1.getFullYear());
+}
+
+// Test Data
+let dt1 = new Date("June 13, 2014 08:11:00");
+let dt2 = new Date("October 19, 2017 11:13:00");
+console.log(diff_years(dt1, dt2)); 
+
+
+50. function week_start_date(date) {
+  const d = new Date(date);
+  const day = d.getDay(); // Sunday = 0, Monday = 1, ...
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust if Sunday
+  return new Date(d.setDate(diff));
+}
+
+// Test Data
+let dt = new Date("June 13, 2024"); // Thursday
+console.log(week_start_date(dt).toDateString());
+
+51. function week_end_date(date) {
+  const start = week_start_date(date);
+  return new Date(start.getFullYear(), start.getMonth(), start.getDate() + 6);
+}
+
+// Test Data
+console.log(week_end_date(dt).toDateString()); 
+
+52. function month_start_date(date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+}
+
+// Test Data
+console.log(month_start_date(dt).toDateString()); 
+
+53. function month_end_date(date) {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+}
+
+// Test Data
+console.log(month_end_date(dt).toDateString()); 
